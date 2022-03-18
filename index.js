@@ -1,6 +1,20 @@
 const express = require("express");
-const app = express();
 const connectDB = require("./configs/connect");
+const session = require("express-session");
+const app = express();
+// app.use(cookieParser());
+
+// app.use(
+//   session({
+//     secret: process.env.SECRET_KEY,
+//     resave: false,
+//     saveUninitialized: false,
+//     cookie: {
+//       expires: 600000,
+//     },
+//   })
+// );
+
 app.use(express.json());
 
 const login = require("./routes/login");
@@ -17,6 +31,7 @@ app.get("/", (request, response) => {
 });
 
 const PORT = process.env.PORT || 8000;
+
 app.listen(PORT, () => {
   console.log(`Server started on port ${PORT}`);
 });
