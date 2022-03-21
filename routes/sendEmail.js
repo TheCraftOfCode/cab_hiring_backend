@@ -3,7 +3,7 @@ const express = require("express");
 const router = express.Router();
 
 router.post("/", (request, response) => {
-  const { senderEmail } = request.body;
+  const { senderEmail, purpose } = request.body;
 
   //check if the senderEmail is valid with the Database
   var transporter = nodemailer.createTransport({
@@ -14,11 +14,13 @@ router.post("/", (request, response) => {
     },
   });
 
+  const { subject, text } = prepareTextAccordingToSubject(senderEmail);
+
   var mailOptions = {
     from: process.env.EMAIL,
-    to: "gkrishnak2001@gmail.com",
-    subject: "Sending Email using Node.js",
-    text: "That was easy!",
+    to: senderEmail,
+    subject: subject,
+    text: text,
   };
 
   transporter.sendMail(mailOptions, (error, info) => {
@@ -30,5 +32,9 @@ router.post("/", (request, response) => {
     }
   });
 });
+
+var prepareTextAccordingToSubject = (senderEmail) => {
+  //function body here
+};
 
 module.exports = router;
