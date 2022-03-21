@@ -19,12 +19,14 @@ app.use(express.json());
 
 const login = require("./routes/login");
 const register = require("./routes/register");
+const sendEmail = require("./routes/sendEmail");
 
 //connecting to database
 connectDB();
 
 app.use("/api/login", login);
-app.use("api/register", register);
+app.use("/api/register", register);
+app.use("/api/sendEmail", sendEmail);
 
 app.get("/", (request, response) => {
   response.send("Hello..! Welcome to cab hiring api..!");

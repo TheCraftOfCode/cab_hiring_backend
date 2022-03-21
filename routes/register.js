@@ -4,7 +4,8 @@ const router = express.Router();
 const User = require("../models/users");
 
 router.post("/", async (request, response) => {
-  const { name, username, password, phone } = request.body;
+  const { name, email, emergency_contact, username, password, phone } =
+    request.body;
 
   const CheckIfUserIsAlreadyRegistered = await User.findOne({
     username: username,
@@ -17,6 +18,8 @@ router.post("/", async (request, response) => {
 
   const user = new Users({
     name,
+    email,
+    emergency_contact,
     username,
     password,
     phone,
