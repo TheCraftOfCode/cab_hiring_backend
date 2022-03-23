@@ -2,18 +2,6 @@ const express = require("express");
 const connectDB = require("./configs/connect");
 const session = require("express-session");
 const app = express();
-// app.use(cookieParser());
-
-// app.use(
-//   session({
-//     secret: process.env.SECRET_KEY,
-//     resave: false,
-//     saveUninitialized: false,
-//     cookie: {
-//       expires: 600000,
-//     },
-//   })
-// );
 
 app.use(express.json());
 
