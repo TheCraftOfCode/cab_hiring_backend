@@ -1,10 +1,10 @@
-const User = require("../models/users");
-const generateAnSixDigitRandomOtp = require("../Helper functions/generateRandom");
-const sendEmail = require("../Helper functions/sendEmail");
+const User = require("../../models/users");
+const generateAnSixDigitRandomOtp = require("../../Helper functions/generateRandom");
+const sendEmail = require("../../Helper functions/sendEmail");
 const mongoose = require("mongoose");
 const express = require("express");
 const router = express.Router();
-const Otpdump = require("../models/otpdump");
+const Otpdump = require("../../models/otpdump");
 
 router.post("/", async (request, response) => {
   //sendEmail
