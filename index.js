@@ -9,7 +9,7 @@ const login = require("./routes/rider/login");
 const register = require("./routes/rider/register");
 const sendEmail = require("./routes/rider/sendEmail");
 
-const driverKnowledge = require('./routes/driver/know.js');
+const driverKnowledge = require("./routes/driver/know.js");
 
 //connecting to database
 connectDB();
@@ -18,7 +18,7 @@ app.use("/api/rider/login", login);
 app.use("/api/rider/register", register);
 app.use("/api/rider/sendEmail", sendEmail);
 
-app.use('/api/driver/know',driverKnowledge);
+app.use("/api/driver/know", driverKnowledge);
 
 app.get("/", (request, response) => {
   response.send("Hello..! Welcome to cab hiring api..!");
