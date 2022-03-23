@@ -23,3 +23,5 @@ router.post("/", async (request, response) => {
       response.status(400).send(`Please try again \n ${err}`);
     });
 });
+
+module.exports = router;
