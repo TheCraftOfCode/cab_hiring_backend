@@ -26,6 +26,7 @@ router.post("/", async (request, response) => {
   bookingStatus.then(() => {
     response.status(201).send("Booking Successful");
   });
+
   bookingStatus.catch((err) => {
     response
       .status(400)

@@ -26,7 +26,10 @@ router.post("/", async (request, response) => {
 
   const otpStatus = await otp.save();
 
-  const sendStatus = sendEmail(email, generateOtp);
+  const sendStatus = sendEmail(
+    email,
+    `your otp for password reset is ${generateOtp}`
+  );
   if (sendStatus) {
     response.status(200).send(`Email successfully sent to ${email}`);
   } else {
