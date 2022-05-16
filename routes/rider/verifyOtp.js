@@ -16,7 +16,7 @@ router.post("/", async (request, response) => {
   if (OtpStatus) {
     //redirect to set new password page
     response.redirect();
-    reponse.status(200).send("Otp is valid..! Render reset password page");
+    response.status(200).send("Otp is valid..! Render reset password page");
   } else {
     response.status(400).send("Otp is invalid");
   }
