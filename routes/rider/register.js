@@ -1,10 +1,10 @@
 const mongoose = require("mongoose");
 const express = require("express");
 const router = express.Router();
-const User = require("../models/users");
+const User = require("../../models/users");
 
 router.post("/", async (request, response) => {
-  const { name, email, emergency_contact, username, password, phone } =
+  const { name, email, emergency_contact, age, username, password, phone } =
     request.body;
 
   const CheckIfUserIsAlreadyRegistered = await User.findOne({
@@ -20,19 +20,20 @@ router.post("/", async (request, response) => {
     name,
     email,
     emergency_contact,
+    age,
     username,
     password,
     phone,
   });
 
   const registrationStatus = await user.save();
-  registrationStatus
-    .then(() => {
-      response.status(201).send("Registration Successfull..!");
-    })
-    .catch((err) => {
-      response.status(400).send(`Registration failed try again \n ${err}`);
-    });
+  if (registrationStatus) {
+    response
+      .status(201)
+      .send("Registration Successfull :  " + registrationStatus);
+  } else {
+    response.status(400).send(`Registration failed try again`);
+  }
 });
 
 module.exports = router;

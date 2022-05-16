@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const mongoose = require("mongoose");
-const users = require(".../models/users");
+const users = require("../../models/users");
 
 router.put("/:username", async (request, response) => {
   const UpdatedProfile = await users.findByIdAndUpdate(
