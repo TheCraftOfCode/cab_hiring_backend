@@ -14,9 +14,11 @@ function connect() {
   dbconnection
     .then(() => {
       console.log("Connected to database");
+      return "0";
     })
     .catch((err) => {
       console.log(`Refused ${err}`);
+      return "1";
     });
 }
 
