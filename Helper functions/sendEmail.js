@@ -11,7 +11,7 @@ export default function sendEmail(email, message, subject) {
 
   var mailOptions = {
     from: process.env.EMAIL,
-    to: senderEmail,
+    to: sendEmail,
     subject: subject,
     text: message,
   };

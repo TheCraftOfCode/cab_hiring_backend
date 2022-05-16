@@ -10,6 +10,6 @@ var complaint = new mongoose.Schema({
   },
 });
 
-const complaint = mongoose.model("complaint-collection", complaint);
+complaint = mongoose.model("complaint-collection", complaint);
 
 module.exports = complaint;

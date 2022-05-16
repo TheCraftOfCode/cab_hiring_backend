@@ -16,7 +16,7 @@ router.post("/", async (request, response) => {
       .status(400)
       .send("User Already Exists. Please Try to Login..!");
 
-  const user = new Users({
+  const user = new User({
     name,
     email,
     emergency_contact,
