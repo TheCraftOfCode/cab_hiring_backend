@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
-const complaintModel = require(".../models/complaint");
+// const complaintModel = require(".../models/complaint");
+const complaintModel = require("../../models/complaint");
 
 router.post("/", async (request, response) => {
   const { email, complaint } = request.body;

@@ -1,5 +1,5 @@
 const express = require("express");
-const otpdump = require(".../models/otpdump");
+const otpdump = require("../../models/otpdump");
 const router = express.Router();
 
 router.post("/", async (request, response) => {

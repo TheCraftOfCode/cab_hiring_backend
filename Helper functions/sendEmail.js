@@ -1,6 +1,6 @@
 const nodemailer = require("nodemailer");
 
-export default function sendEmail(email, message, subject) {
+function sendEmail(email, message, subject) {
   var transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
@@ -25,3 +25,5 @@ export default function sendEmail(email, message, subject) {
     }
   });
 }
+
+module.exports = sendEmail;

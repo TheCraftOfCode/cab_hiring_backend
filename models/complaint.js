@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-var complaint = new mongoose.Schema({
+const complaint = new mongoose.Schema({
   email: {
     type: String,
     required: true,
@@ -10,6 +10,6 @@ var complaint = new mongoose.Schema({
   },
 });
 
-const complaint = mongoose.model("complaint-collection", complaint);
+const compl = mongoose.model("complaints", complaint);
 
-module.exports = complaint;
+module.exports = compl;
