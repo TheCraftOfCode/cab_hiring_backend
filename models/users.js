@@ -28,6 +28,10 @@ const users = mongoose.Schema({
     type: String,
     required: true,
   },
+  age: {
+    type: Number,
+    required: true,
+  },
   isAdmin: {
     type: Boolean,
     required: true,
