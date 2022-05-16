@@ -14,4 +14,4 @@ const compl = mongoose.model("complaints", complaint);
 
 module.exports = compl;
 
-//added one fake commit for branch
+//added one fake commit for branch closes #9
