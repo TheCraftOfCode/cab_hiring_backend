@@ -1,17 +1,29 @@
-name: Node.js CI/CD ## <-- it’s not just CI anymore
+name: deploy-hackernews-app-heroku # 1
 
-## <-- don’t change anything in this section
+on:
+  push:
+    branches: # 2
+      - master
+      - main
 
 jobs:
-  build:
-    ## don’t change anything in this section
-  deploy: ## <-- this is the new stuff
-    needs: build
+  deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: akhileshns/heroku-deploy@v3.12.12
+      - uses: actions/checkout@v2 # 3
+      - run: npm ci # 4
+      - name: Run production migration
+        run: npm run migrate:deploy # 5
+        env:
+          DATABASE_NAME: ${{ secrets.DATABASE_NAME }}
+          DATABASE_USER: ${{ secrets.DATABASE_USER }}
+          DATABASE_PASSWORD: ${{ secrets.DATABASE_PASSWORD }}
+          EMAIL: ${{ secrets.EMAIL }}
+          PASSWORD: ${{ secrets.PASSWORD }}
+          JWT_SECRET_KEY: ${{ secrets.JWT_SECRET_KEY }}
+
+      - uses: akhileshns/heroku-deploy@v3.12.12 # 6
         with:
-          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-          heroku_app_name: "micah-simple-node-api"
-          heroku_email: "kv.sridharsai@gmail.com"
+          heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
+          heroku_app_name: ${{ secrets.HEROKU_APP_NAME }}
+          heroku_email: ${{ secrets.HEROKU_EMAIL }}
