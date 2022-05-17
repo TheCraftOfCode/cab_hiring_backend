@@ -2,6 +2,11 @@ name: Node.js CI/CD ## <-- it’s not just CI anymore
 
 ## <-- don’t change anything in this section
 
+on:
+  push:
+    branches:
+      - main
+
 jobs:
   build:
     ## don’t change anything in this section
