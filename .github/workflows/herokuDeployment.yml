@@ -6,6 +6,11 @@ on:
       - master
       - main
 
+on:
+  push:
+    branches:
+      - main
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
