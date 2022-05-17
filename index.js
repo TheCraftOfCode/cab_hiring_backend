@@ -15,6 +15,7 @@ const verifyOtp = require("./routes/rider/verifyOtp");
 const complaintCustomerServie = require("./routes/rider/complaints_customer_service");
 
 const driverKnowledge = require("./routes/driver/know.js");
+const addCar = require("./routes/driver/addCar.js");
 
 //connecting to database
 connectDB();
@@ -30,6 +31,7 @@ app.use("/api/rider/verifyOtp", verifyOtp);
 app.use("/api/rider/complaintsCustomerRaise", complaintCustomerServie);
 
 app.use("/api/driver/know", driverKnowledge);
+app.use("/api/driver/addCar", addCar);
 
 app.get("/", (request, response) => {
   response.send("Hello..! Welcome to cab hiring api..!");
