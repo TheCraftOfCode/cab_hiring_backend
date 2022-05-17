@@ -1,7 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const bookingModel = require("../../models/user_cab_booking");
-const auth = require("../../middleware/auth");
+const mongoose = require("mongoose");
 
 const {
   generateARandomTwoDigit,
@@ -23,32 +22,35 @@ function GenerateACabNumber() {
   }
   return finalNumberPlate;
 }
-
-router.post("/", auth, async (request, response) => {
-  const { pickup_location, drop_location, pickup_time, promocode, cab_type } =
-    request.body;
-
-  //allocate a cab No random number
-  var cab_number = GenerateACabNumber();
-
-  const bookingData = new bookingModel({
+router.post("/", async (request, response) => {
+  const {
     pickup_location,
     drop_location,
     pickup_time,
-    promocode,
+    friends,
+    rideWith,
+    seat_prefs,
+    cab_type,
+  } = request.body;
+
+  //allocate a cab No random number
+  var cab_number = GenerateACabNumber();
+  const carPoolingDocument = new carPoolingModel({
+    pickup_location,
+    drop_location,
+    pickup_time,
+    friends,
+    rideWith,
+    seat_prefs,
     cab_type,
     cab_number,
   });
 
-  const bookingStatus = await bookingData.save();
-
-  if (bookingStatus) {
-    response.status(201).send(bookingStatus);
+  var carpoolingStatus = await carPoolingDocument.save();
+  if (carpoolingStatus) {
+    response.status(200).send(carPoolingDocument);
   } else {
-    response
-      .status(400)
-      .send(`Something went wrong.. Please Try again \n ${err}`);
+    response.status(400).send("Sorry an error has occured");
   }
 });
-
 module.exports = router;

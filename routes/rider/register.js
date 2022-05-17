@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 const express = require("express");
 const router = express.Router();
 const User = require("../../models/users");
+const bcrypt = require("bcrypt");
 
 router.post("/", async (request, response) => {
   const { name, email, emergency_contact, age, username, password, phone } =
@@ -26,7 +27,15 @@ router.post("/", async (request, response) => {
     phone,
   });
 
+  //encrypting the user password before saving to the database
+  const salt = await bcrypt.genSalt(10);
+  const HashedPassword = await bcrypt.hash(user.password, salt);
+
+  // reassigning the hashed password in the place of the password
+  user.password = HashedPassword;
+
   const registrationStatus = await user.save();
+
   if (registrationStatus) {
     response
       .status(201)
